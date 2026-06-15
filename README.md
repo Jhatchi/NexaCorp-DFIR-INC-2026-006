@@ -1,5 +1,12 @@
 # NexaCorp DFIR: INC-2026-006
 
+[![ci](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-006/actions/workflows/ci.yml/badge.svg)](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-006/actions/workflows/ci.yml)
+[![Methodology](https://img.shields.io/badge/methodology-NIST%20SP%20800--61r2-blue.svg)](#standards-and-frameworks)
+[![Framework](https://img.shields.io/badge/framework-MITRE%20ATT%26CK-red.svg)](https://attack.mitre.org/)
+[![Detection](https://img.shields.io/badge/Suricata-2%20rules%20validated-green.svg)](detection/lab.rules)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Johan--Emmanuel%20Hatchi-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/johan-emmanuel-hatchi/)
+
 Stored Cross-Site Scripting (XSS) leading to session hijacking on an internal web portal. Blue Team forensic investigation and Suricata detection engineering.
 
 This repository documents a SOC analyst engagement carried out as part of the BeCode Cybersecurity Bootcamp (promotion 2025-2026). It reconstructs a full intrusion from network and log evidence, then delivers a validated set of network detection rules. It is the sixth incident in the NexaCorp DFIR series.
@@ -65,6 +72,7 @@ NexaCorp-DFIR-INC-2026-006/
 │   └── workflows/
 │       └── ci.yml                 markdownlint + typography validation
 ├── reports/
+│   ├── INC-2026-006_Findings_Report.pdf   Full findings report (27 pages)
 │   └── INC-2026-006_Findings_Report.md    Markdown source of the report, readable on GitHub
 ├── detection/
 │   ├── lab.rules                  The 2 Suricata rules (SID 1000001-1000002)
@@ -78,7 +86,7 @@ NexaCorp-DFIR-INC-2026-006/
     └── journal.md                 Investigation journal (post-analysis reconstruction)
 ```
 
-The findings report PDF (`reports/INC-2026-006_Findings_Report.pdf`) is added on publication.
+The findings report is provided as a 27-page PDF in `reports/`, alongside its Markdown source.
 
 ---
 
