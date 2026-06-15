@@ -1,12 +1,14 @@
-# Incident Findings Report: INC-2026-006
+# INC-2026-006 Findings Report: Stored XSS and Session Hijacking
 
-**Client:** NexaCorp Industries
-**System:** NexaPortal (bru-web-02), 192.168.10.24
-**Incident type:** Stored Cross-Site Scripting (XSS) leading to session hijacking
-**Date of incident:** Wednesday, 18 June 2026
+**Engagement:** NexaCorp DFIR, Stored XSS and Session Hijacking
+**Reference:** BCC-2026 / INC-2026-006
+**Target system:** NexaPortal (bru-web-02), 192.168.10.24
 **Reported by:** Marc Wauters, IT Infrastructure Manager
-**Analyst:** Johan-Emmanuel Hatchi, BeCode Corp SOC
+**Date of incident:** Wednesday, 18 June 2026
+**Analyst:** Johan-Emmanuel Hatchi, SOC Analyst L1, BeCode Corp
 **Classification:** Confidential
+
+> All timestamps are taken from evidence files. The Apache access log records time in UTC. Local time (CEST) is UTC plus two hours. Both are shown to avoid ambiguity.
 
 ---
 
