@@ -16,7 +16,7 @@ This repository documents a SOC analyst engagement carried out as part of the Be
 
 ---
 
-## Incident at a glance
+## At a glance
 
 | Field | Value |
 |---|---|
@@ -29,6 +29,16 @@ This repository documents a SOC analyst engagement carried out as part of the Be
 | Evidence | web_access.log, attack.pcap |
 | Phases | Phase 1 forensic analysis, Phase 2 Suricata detection |
 | Related incidents | INC-2026-004, INC-2026-005 (web application incidents) |
+
+| Investigation output | Value |
+|---|---|
+| Attacker IP | 91.92.100.45 (external) |
+| Injection vector | POST /portal/feedback.php |
+| Victim account | p.dumont |
+| Stolen session cookie | PHPSESSID (Base64-exfiltrated via beacon) |
+| Unauthorized account | m.renard (origin undetermined) |
+| Suricata detection rules authored | 2 (SID 1000001 to 1000002) |
+| Rules firing against the capture | 2 of 2 (1 injection, 1 beacon) |
 
 ---
 
@@ -44,20 +54,6 @@ The attacker compromised an employee session without ever needing a password:
 6. **Hijack**: the attacker replayed the stolen `PHPSESSID` and accessed the portal as p.dumont (approx 15:52 UTC).
 
 Investigation also surfaced an account, `m.renard`, that authenticated from the attacker IP and matches no NexaCorp employee directory entry. Its origin is not fully established (attacker-created foothold, or compromised pre-existing account); in both cases it must be treated as unauthorized and removed. This nuance is stated as fact, not forced into a single conclusion, in the report.
-
----
-
-## Key metrics
-
-| Metric | Value |
-|---|---|
-| Attacker IP | 91.92.100.45 (external) |
-| Injection vector | POST /portal/feedback.php |
-| Victim account | p.dumont |
-| Stolen session cookie | PHPSESSID (Base64-exfiltrated via beacon) |
-| Unauthorized account | m.renard (origin undetermined) |
-| Suricata detection rules authored | 2 (SID 1000001 to 1000002) |
-| Rules firing against the capture | 2 of 2 (1 injection, 1 beacon) |
 
 ---
 
@@ -91,7 +87,7 @@ The findings report is provided as a 27-page PDF in `reports/`, alongside its Ma
 
 ---
 
-## Detection engineering highlight
+## Detection engineering
 
 Two rules, one per critical stage of the chain, each targeting the Suricata buffer suited to its intent:
 
