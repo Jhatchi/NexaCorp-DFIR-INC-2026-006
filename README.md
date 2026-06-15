@@ -1,6 +1,6 @@
 # NexaCorp DFIR: INC-2026-006 - Stored XSS and Session Hijacking
 
-Stored Cross-Site Scripting (XSS) leading to session hijacking on an internal web portal. Blue Team forensic investigation and Suricata detection engineering.
+Forensic investigation of a stored Cross-Site Scripting (XSS) attack against NexaPortal, NexaCorp's internal employee web portal (`bru-web-02`). An external attacker planted a malicious `<script>` in the portal's feedback feature; because the input was stored and rendered without output encoding, the script executed in an employee's authenticated session, read the session cookie, and beaconed it (Base64-encoded) to an attacker-controlled collector. The attacker then replayed the stolen session to access the portal as that employee, with no password required. Conducted as a solo engagement during the BeCode Brussels Blue & Red Team bootcamp (Mission 06), as the continuation of [INC-2026-001](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-001), [INC-2026-002](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-002), [INC-2026-003](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-003), [INC-2026-004](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-004), and [INC-2026-005](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-005).
 
 [![ci](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-006/actions/workflows/ci.yml/badge.svg)](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-006/actions/workflows/ci.yml)
 [![Methodology](https://img.shields.io/badge/methodology-NIST%20SP%20800--61r2-blue.svg)](#methodology)
