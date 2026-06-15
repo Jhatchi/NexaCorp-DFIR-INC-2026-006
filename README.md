@@ -1,4 +1,6 @@
-# NexaCorp DFIR: INC-2026-006
+# NexaCorp DFIR: INC-2026-006 - Stored XSS and Session Hijacking
+
+Stored Cross-Site Scripting (XSS) leading to session hijacking on an internal web portal. Blue Team forensic investigation and Suricata detection engineering.
 
 [![ci](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-006/actions/workflows/ci.yml/badge.svg)](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-006/actions/workflows/ci.yml)
 [![Methodology](https://img.shields.io/badge/methodology-NIST%20SP%20800--61r2-blue.svg)](#standards-and-frameworks)
@@ -7,8 +9,6 @@
 [![CWE](https://img.shields.io/badge/CWE--79-Stored%20XSS-orange.svg)](https://cwe.mitre.org/data/definitions/79.html)
 [![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Johan--Emmanuel%20Hatchi-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/johan-emmanuel-hatchi/)
-
-Stored Cross-Site Scripting (XSS) leading to session hijacking on an internal web portal. Blue Team forensic investigation and Suricata detection engineering.
 
 This repository documents a SOC analyst engagement carried out as part of the BeCode Cybersecurity Bootcamp (promotion 2025-2026). It reconstructs a full intrusion from network and log evidence, then delivers a validated set of network detection rules. It is the sixth incident in the NexaCorp DFIR series.
 
@@ -61,7 +61,7 @@ Investigation also surfaced an account, `m.renard`, that authenticated from the 
 
 ---
 
-## Repository structure
+## Repository layout
 
 ```
 NexaCorp-DFIR-INC-2026-006/
