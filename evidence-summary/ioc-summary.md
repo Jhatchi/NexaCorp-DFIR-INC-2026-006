@@ -2,7 +2,7 @@
 
 **Incident:** INC-2026-006, stored XSS and session hijacking on NexaPortal
 **Date:** 18 June 2026
-**Analyst:** Johan-Emmanuel Hatchi, BeCode Corp SOC
+**Analyst:** Johan-Emmanuel Hatchi, SOC Analyst L1, BeCode Corp
 
 This file lists every indicator recovered during the investigation, with its evidence source. All values are extracted from the evidence bundle, not from the bundle README.
 
