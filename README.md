@@ -5,7 +5,7 @@ Forensic investigation of a stored Cross-Site Scripting (XSS) attack against Nex
 [![ci](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-006/actions/workflows/ci.yml/badge.svg)](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-006/actions/workflows/ci.yml)
 [![Methodology](https://img.shields.io/badge/methodology-NIST%20SP%20800--61r2-blue.svg)](#methodology)
 [![Framework](https://img.shields.io/badge/framework-MITRE%20ATT%26CK-red.svg)](https://attack.mitre.org/)
-[![Detection](https://img.shields.io/badge/Suricata-2%20rules%20validated-green.svg)](detection/lab.rules)
+[![Detection](https://img.shields.io/badge/Suricata-2%20rules%20validated-green.svg)](detection/local-xss.rules)
 [![CWE](https://img.shields.io/badge/CWE--79-Stored%20XSS-orange.svg)](https://cwe.mitre.org/data/definitions/79.html)
 [![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Johan--Emmanuel%20Hatchi-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/johan-emmanuel-hatchi/)
@@ -87,7 +87,7 @@ Investigation also surfaced an account, `m.renard`, that authenticated from the 
 |---|---|---|
 | **Recruiter or hiring manager** | This README + the [report](reports/INC-2026-006_Findings_Report.md) executive summary | 5 min |
 | **SOC analyst evaluating fit** | [Report](reports/INC-2026-006_Findings_Report.md) technical analysis + [`evidence-summary/ioc-summary.md`](evidence-summary/ioc-summary.md) | 20 min |
-| **Detection engineer** | [`detection/lab.rules`](detection/lab.rules) + [`detection/README.md`](detection/README.md) for per-rule logic and validation | 20 min |
+| **Detection engineer** | [`detection/local-xss.rules`](detection/local-xss.rules) + [`detection/README.md`](detection/README.md) for per-rule logic and validation | 20 min |
 | **DFIR practitioner** | Full [report](reports/INC-2026-006_Findings_Report.md) + [`methodology/attack-timeline.md`](methodology/attack-timeline.md) + [`notes/journal.md`](notes/journal.md) | 40 min |
 | **Anyone who wants to grep, cite, or diff** | [Markdown source of the report](reports/INC-2026-006_Findings_Report.md) | as needed |
 
@@ -144,7 +144,7 @@ NexaCorp-DFIR-INC-2026-006/
 │   ├── INC-2026-006_Findings_Report.pdf   Full findings report (27 pages)
 │   └── INC-2026-006_Findings_Report.md    Markdown source of the report, readable on GitHub
 ├── detection/
-│   ├── lab.rules                  The 2 Suricata rules (SID 1000001-1000002)
+│   ├── local-xss.rules            The 2 Suricata rules (SID 1000001-1000002)
 │   └── README.md                  Per-rule logic and validation
 ├── evidence-summary/
 │   └── ioc-summary.md             Indicators of compromise, SIEM-ingestible format
@@ -165,7 +165,7 @@ The evidence bundle is BeCode lab property and is not redistributed. With your o
 
 ```bash
 rm -rf /tmp/suricata_test && mkdir /tmp/suricata_test
-suricata -c <path>/suricata.yaml -S lab.rules -r attack_eth.pcap -l /tmp/suricata_test/
+suricata -c <path>/suricata.yaml -S local-xss.rules -r attack_eth.pcap -l /tmp/suricata_test/
 cat /tmp/suricata_test/fast.log
 wc -l < /tmp/suricata_test/fast.log
 ```

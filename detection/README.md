@@ -4,7 +4,7 @@ This directory contains the Suricata rules written to detect the INC-2026-006 at
 
 ## Files
 
-- `lab.rules` : the two Suricata rules (SID 1000001 and 1000002).
+- `local-xss.rules` : the two Suricata rules (SID 1000001 and 1000002).
 
 ## Validation method
 
@@ -12,7 +12,7 @@ Each rule was validated by replaying the incident capture offline:
 
 ```bash
 rm -rf /tmp/suricata_test && mkdir /tmp/suricata_test
-suricata -c <path>/suricata.yaml -S lab.rules -r attack_eth.pcap -l /tmp/suricata_test/
+suricata -c <path>/suricata.yaml -S local-xss.rules -r attack_eth.pcap -l /tmp/suricata_test/
 cat /tmp/suricata_test/fast.log
 wc -l < /tmp/suricata_test/fast.log
 ```
