@@ -190,6 +190,7 @@ The capture used is `attack_eth.pcap` (the Ethernet-framed version of the traffi
 - [INC-2026-004](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-004): SQL injection (web portal)
 - [INC-2026-005](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-005): OS command injection and web shell (web portal)
 - **INC-2026-006**: this repository
+- [INC-2026-007](https://github.com/Jhatchi/NexaCorp-DFIR-INC-2026-007): IDOR and broken access control (NexaPortal); Month 2 capstone
 
 ---
 
