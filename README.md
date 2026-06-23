@@ -12,6 +12,25 @@ Forensic investigation of a stored Cross-Site Scripting (XSS) attack against Nex
 
 This repository documents a SOC analyst engagement carried out as part of the BeCode Cybersecurity Bootcamp (promotion 2025-2026). It reconstructs a full intrusion from network and log evidence, then delivers a validated set of network detection rules. It is the sixth incident in the NexaCorp DFIR series.
 
+## Contents
+
+- [Operational notice](#operational-notice)
+- [At a glance](#at-a-glance)
+- [Engagement context](#engagement-context)
+- [Executive summary](#executive-summary)
+- [Kill chain summary](#kill-chain-summary)
+- [How to read this repository](#how-to-read-this-repository)
+- [Methodology](#methodology)
+- [Tools used](#tools-used)
+- [Detection engineering](#detection-engineering)
+- [Repository layout](#repository-layout)
+- [Reproducibility](#reproducibility)
+- [Known limits](#known-limits)
+- [NexaCorp DFIR series](#nexacorp-dfir-series)
+- [Acknowledgments](#acknowledgments)
+- [About](#about)
+- [License](#license)
+
 ---
 
 ## Operational notice
